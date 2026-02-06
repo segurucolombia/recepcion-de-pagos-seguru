@@ -6,6 +6,10 @@ services:
     # Nombre del contenedor
     container_name: gateway-transacciones-wompi
 
+    # Cargar variables de entorno desde archivo .env
+    env_file:
+      - .env
+
     # Construir desde el Dockerfile local
     build:
       context: .
@@ -15,20 +19,17 @@ services:
     image: gateway-transacciones-wompi:latest
 
     # Puerto: HOST:CONTAINER
-    # Similar a -p 3001:3001 en Node.js
     ports:
       - "3001:3001"
 
-    # Variables de entorno (sobrescriben el .env)
+    # Variables de entorno
     environment:
       # Puerto del servidor
-      - SERVER_PORT=3001
+      - SERVER_PORT=${SERVER_PORT}
 
-      # URLs de APIs externas
-      # IMPORTANTE: Si las APIs están en tu máquina host, usa host.docker.internal
-      # en lugar de localhost
-      - EXTERNAL_API_RESERVAS_SEGURU=http://host.docker.internal:5019/nuevo-back/transacciones/respuesta-transaccion
-      - EXTERNAL_API_ALIADOS_SEGURU=http://host.docker.internal:3000/api-aliados/transacciones-wompi/respuesta-transaccion
+      # URLs de APIs externas - desde .env
+      - EXTERNAL_API_RESERVAS_SEGURU=${EXTERNAL_API_RESERVAS_SEGURU}
+      - EXTERNAL_API_ALIADOS_SEGURU=${EXTERNAL_API_ALIADOS_SEGURU}
 
     # Reiniciar automáticamente si falla
     restart: unless-stopped
@@ -37,7 +38,11 @@ services:
     networks:
       - gateway-network
 
-    # Health check (verificar que la aplicación esté funcionando)
+    # IMPORTANTE: Agregar extra_hosts para resolver host.docker.internal
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+    # Health check
     healthcheck:
       test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3001/actuator/health || exit 1"]
       interval: 30s
@@ -52,7 +57,7 @@ services:
         max-size: "10m"
         max-file: "3"
 
-# Red personalizada para aislar los contenedores
+# Red personalizada
 networks:
   gateway-network:
     driver: bridge
