@@ -1,0 +1,37 @@
+# Similar a .gitignore pero para Docker
+# Evita copiar archivos innecesarios al contenedor
+
+# Directorio target (archivos compilados)
+target/
+
+# Archivos de Maven
+.mvn/
+mvnw
+mvnw.cmd
+
+# IDEs
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# Logs
+*.log
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+
+# Docker
+Dockerfile
+.dockerignore
+docker-compose.yml
+
+# Documentación
+README.md
+*.md

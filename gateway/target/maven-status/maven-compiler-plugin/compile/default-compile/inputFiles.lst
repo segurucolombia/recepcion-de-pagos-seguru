@@ -1,0 +1,15 @@
+/home/maria22p/proyectos/Seguru/recepcion-de-pagos-seguru/gateway/src/main/java/com/gateway/transaccioneswompi/infrastructure/dto/ExternalApiResponseDto.java
+/home/maria22p/proyectos/Seguru/recepcion-de-pagos-seguru/gateway/src/main/java/com/gateway/transaccioneswompi/infrastructure/config/RestTemplateConfig.java
+/home/maria22p/proyectos/Seguru/recepcion-de-pagos-seguru/gateway/src/main/java/com/gateway/transaccioneswompi/infrastructure/dto/WompiWebhookRequest.java
+/home/maria22p/proyectos/Seguru/recepcion-de-pagos-seguru/gateway/src/main/java/com/gateway/transaccioneswompi/app/usecases/ProcessWompiWebhookUseCase.java
+/home/maria22p/proyectos/Seguru/recepcion-de-pagos-seguru/gateway/src/main/java/com/gateway/transaccioneswompi/infrastructure/controllers/result.java
+/home/maria22p/proyectos/Seguru/recepcion-de-pagos-seguru/gateway/src/main/java/com/gateway/transaccioneswompi/infrastructure/adapters/ExternalApiAdapter.java
+/home/maria22p/proyectos/Seguru/recepcion-de-pagos-seguru/gateway/src/main/java/com/gateway/transaccioneswompi/domain/ports/ExternalApiPort.java
+/home/maria22p/proyectos/Seguru/recepcion-de-pagos-seguru/gateway/src/main/java/com/gateway/transaccioneswompi/infrastructure/controllers/RespuestaWompiController.java
+/home/maria22p/proyectos/Seguru/recepcion-de-pagos-seguru/gateway/src/main/java/com/gateway/App.java
+/home/maria22p/proyectos/Seguru/recepcion-de-pagos-seguru/gateway/src/main/java/com/gateway/AppConfig.java
+/home/maria22p/proyectos/Seguru/recepcion-de-pagos-seguru/gateway/src/main/java/com/gateway/transaccioneswompi/infrastructure/dto/SecondEndpointRequest.java
+/home/maria22p/proyectos/Seguru/recepcion-de-pagos-seguru/gateway/src/main/java/com/gateway/transaccioneswompi/infrastructure/dto/FirstEndpointRequest.java
+/home/maria22p/proyectos/Seguru/recepcion-de-pagos-seguru/gateway/src/main/java/com/gateway/transaccioneswompi/domain/WompiWebhookEvent.java
+/home/maria22p/proyectos/Seguru/recepcion-de-pagos-seguru/gateway/src/main/java/com/gateway/transaccioneswompi/infrastructure/mappers/WompiWebhookMapper.java
+/home/maria22p/proyectos/Seguru/recepcion-de-pagos-seguru/gateway/src/main/java/com/gateway/RutaPrincipalController.java

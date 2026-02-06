@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  # Servicio del Gateway (tu aplicación Spring Boot)
+  gateway:
+    # Nombre del contenedor
+    container_name: gateway-transacciones-wompi
+
+    # Construir desde el Dockerfile local
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    # Nombre de la imagen resultante
+    image: gateway-transacciones-wompi:latest
+
+    # Puerto: HOST:CONTAINER
+    # Similar a -p 3001:3001 en Node.js
+    ports:
+      - "3001:3001"
+
+    # Variables de entorno (sobrescriben el .env)
+    environment:
+      # Puerto del servidor
+      - SERVER_PORT=3001
+
+      # URLs de APIs externas
+      # IMPORTANTE: Si las APIs están en tu máquina host, usa host.docker.internal
+      # en lugar de localhost
+      - EXTERNAL_API_RESERVAS_SEGURU=http://host.docker.internal:5019/nuevo-back/transacciones/respuesta-transaccion
+      - EXTERNAL_API_ALIADOS_SEGURU=http://host.docker.internal:3000/api-aliados/transacciones-wompi/respuesta-transaccion
+
+    # Reiniciar automáticamente si falla
+    restart: unless-stopped
+
+    # Conectar a una red personalizada
+    networks:
+      - gateway-network
+
+    # Health check (verificar que la aplicación esté funcionando)
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3001/actuator/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+    # Logs
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+# Red personalizada para aislar los contenedores
+networks:
+  gateway-network:
+    driver: bridge
